@@ -1,0 +1,53 @@
+﻿@page "/BlogPage"
+
+@using Mega.Data
+@using Mega.Models
+
+@inject BlogService BlogService
+
+<h1>Blog</h1>
+
+<p>This component demonstrates fetching data from a service.</p>
+
+@if ( BlogData == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>URL</th>
+                
+                
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var blog in BlogData)
+            {
+                <tr>
+                    
+                    <td>@blog.BlogId</td>
+                    <td>@blog.Url</td>
+                   
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<Blog> BlogData;
+
+    protected override void OnInitialized()
+    {
+        GetBlog();
+    }
+
+    public void GetBlog()
+    {
+        BlogData = BlogService.GetBlog();
+    }
+}

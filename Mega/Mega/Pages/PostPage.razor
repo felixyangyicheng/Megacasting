@@ -1,0 +1,55 @@
+﻿@page "/PostPage"
+
+@using Mega.Data
+@using Mega.Models
+
+@inject PostService PostService
+
+<h1>Post</h1>
+
+<p>This component demonstrates fetching data from a service.</p>
+
+@if (PostData == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Blog</th>
+                <th>Content</th>
+                <th>Title</th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var post in PostData)
+            {
+            <tr>
+                <td>@post.PostId</td>
+                <td>@post.BlogId</td>
+                <td>@post.Content</td>
+                <td>@post.Title</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<Post> PostData;
+
+    protected override void OnInitialized()
+    {
+        GetPost();
+    }
+
+    public void GetPost()
+    {
+        PostData = PostService.GetPost();
+    }
+}
