@@ -10,15 +10,25 @@ namespace Mega.Pages
     public class BlogPageBase:ComponentBase
     {
         public IEnumerable<Blog> Blogs { get; set; }
-        protected override Task OnInitializedAsync()
+        //protected override Task OnInitializedAsync()
+        //{
+        //    LoadBlogs();
+        //    return base.OnInitializedAsync();
+        //}
+
+
+        protected override async Task OnInitializedAsync()
         {
-            LoadBlogs();
-            return base.OnInitializedAsync();
+            await Task.Run(LoadBlogs);
         }
 
         private void LoadBlogs()
         {
-
+            System.Threading.Thread.Sleep(2000);
+            // Retrieve data from the server and initialize
+            // Employees property which the View will bind
         }
+
+     
     }
 }
