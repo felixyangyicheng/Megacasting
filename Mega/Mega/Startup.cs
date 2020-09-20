@@ -12,6 +12,10 @@ using Microsoft.Extensions.Hosting;
 using Mega.Data;
 using model;
 using Microsoft.EntityFrameworkCore;
+using Blazorise;
+using Blazorise.Bootstrap;
+using Blazorise.Icons.FontAwesome;
+using Microsoft.Extensions.Options;
 
 namespace Mega
 {
@@ -28,6 +32,7 @@ namespace Mega
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddBlazorise(options => { options.ChangeTextOnKeyPress = true; }).AddBootstrapProviders().AddFontAwesomeIcons();
             services.AddDbContext<BloggingContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddRazorPages();
             services.AddServerSideBlazor();
@@ -54,7 +59,9 @@ namespace Mega
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.ApplicationServices
+      .UseBootstrapProviders()
+      .UseFontAwesomeIcons();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapBlazorHub();
