@@ -12,4 +12,6 @@ namespace Mega.Models
 
         public virtual Blog Blog { get; set; }
     }
+
+   
 }

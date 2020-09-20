@@ -10,7 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Mega.Data;
-using Mega.Models;
+using model;
 using Microsoft.EntityFrameworkCore;
 
 namespace Mega
@@ -31,8 +31,8 @@ namespace Mega
             services.AddDbContext<BloggingContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddSingleton<WeatherForecastService>();
-            services.AddScoped<BlogService>();
+            services.AddSingleton<WeatherForecastService>(); // même instance
+            services.AddScoped<BlogService>(); // différente instance
             services.AddScoped<PostService>();
         }
 

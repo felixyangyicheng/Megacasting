@@ -1,7 +1,7 @@
 ﻿@page "/PostPage"
 
 @using Mega.Data
-@using Mega.Models
+@using model
 
 @inject PostService PostService
 
@@ -22,6 +22,7 @@ else
                 <th>Blog</th>
                 <th>Content</th>
                 <th>Title</th>
+                <th>Blog Url</th>
 
 
             </tr>
@@ -34,6 +35,7 @@ else
                 <td>@post.BlogId</td>
                 <td>@post.Content</td>
                 <td>@post.Title</td>
+                <td>@post.Blog.Url</td>
             </tr>
             }
         </tbody>
