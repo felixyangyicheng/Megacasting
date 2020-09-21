@@ -16,6 +16,11 @@ namespace api.Models
             this.bloggingContext = bloggingContext;
         }
 
+
+        public async Task<IEnumerable<Blog>> GetBlogs()
+        {
+            return await bloggingContext.Blog.ToListAsync();
+        }
         public async Task<Blog> GetBlog(int blogID)
         {
             return await bloggingContext.Blog.FirstOrDefaultAsync(b => b.BlogId == blogID);        

@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using model;
 
-namespace model
+namespace api.Models
 {
    public  interface IPostRepository
     {
